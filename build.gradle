@@ -2,8 +2,9 @@ group 'de.bringmeister'
 version '0.1.0'
 
 buildscript {
+    ext.kotlin_version = '1.3.31'
     ext.versions = [
-            springboot: "1.5.7.RELEASE",
+            springboot: "2.1.5.RELEASE",
     ]
 
     ext.pluginDependencies = [
@@ -19,17 +20,42 @@ buildscript {
 
     dependencies {
         classpath pluginDependencies.springboot
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlin_version}"
+    }
+    repositories {
+        mavenCentral()
     }
 }
 
 repositories(allRepositories)
 
 apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: "kotlin-spring"
 apply plugin: 'org.springframework.boot'
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: versions.springboot
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    implementation 'com.beust:klaxon:5.0.1'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.9'
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.9"
+}
+repositories {
+    mavenCentral()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
