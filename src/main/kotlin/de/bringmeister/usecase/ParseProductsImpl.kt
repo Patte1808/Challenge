@@ -6,7 +6,7 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import de.bringmeister.domain.entity.Price
 import de.bringmeister.domain.entity.ProductDetail
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 
 private data class ProductsXml(@JacksonXmlElementWrapper(useWrapping = false)
                                @JacksonXmlProperty(localName = "Product") val products: List<ProductXml>)
@@ -20,13 +20,11 @@ private data class ProductXml(@JacksonXmlProperty(isAttribute = true) val id: St
             name = name, prices = prices)
 }
 
-@Component
-class ParseProductsImpl : ParseProducts {
-
-    @Autowired
-    lateinit var parsePrices: ParsePrices
+@Service
+class ParseProductsImpl @Autowired constructor(var parsePrices: ParsePrices) : ParseProducts {
 
     override fun execute(): List<ProductDetail> {
+        // TODO: Create XmlMapper Bean and inject it
         val objectMapper = XmlMapper().registerModule(KotlinModule())
         val productsXml = objectMapper
                 .readValue(javaClass.getResourceAsStream("/products/products.xml"), ProductsXml::class.java)

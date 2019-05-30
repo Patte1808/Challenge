@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("products")
-class ProductController {
-
-    @Autowired
-    lateinit var productService: ProductService
+class ProductController @Autowired constructor(val productService: ProductService) {
 
     @GetMapping("/", produces = ["application/json"])
     fun getAllProducts() = productService.findAll()

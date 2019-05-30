@@ -8,10 +8,7 @@ import org.springframework.stereotype.Component
 import javax.annotation.PostConstruct
 
 @Component
-class ProductDaoImpl : ProductDao {
-
-    @Autowired
-    lateinit var parseProducts: ParseProducts
+class ProductDaoImpl @Autowired constructor(val parseProducts: ParseProducts) : ProductDao {
 
     private lateinit var productDetails: List<ProductDetail>
 

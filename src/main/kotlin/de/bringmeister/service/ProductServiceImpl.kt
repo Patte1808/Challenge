@@ -5,11 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class ProductServiceImpl : ProductService {
-
-    @Autowired
-    lateinit var productRepository: ProductRepository
-
+class ProductServiceImpl @Autowired constructor(val productRepository: ProductRepository) : ProductService {
+    
     override fun findAll() = productRepository.getAllProducts()
 
     override fun findById(id: String) = productRepository.getProductById(id)
