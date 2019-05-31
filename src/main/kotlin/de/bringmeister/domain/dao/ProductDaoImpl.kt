@@ -2,7 +2,7 @@ package de.bringmeister.domain.dao
 
 import de.bringmeister.domain.entity.Product
 import de.bringmeister.domain.entity.ProductDetail
-import de.bringmeister.usecase.ParseProducts
+import de.bringmeister.usecase.products.ParseProducts
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import javax.annotation.PostConstruct

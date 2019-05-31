@@ -2,7 +2,7 @@ package de.bringmeister.domain.dao
 
 import de.bringmeister.domain.entity.Price
 import de.bringmeister.domain.entity.ProductDetail
-import de.bringmeister.usecase.ParseProducts
+import de.bringmeister.usecase.products.ParseProducts
 import org.amshove.kluent.When
 import org.amshove.kluent.calling
 import org.amshove.kluent.itReturns

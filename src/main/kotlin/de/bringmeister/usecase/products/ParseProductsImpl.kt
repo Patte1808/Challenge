@@ -1,16 +1,19 @@
-package de.bringmeister.usecase
+package de.bringmeister.usecase.products
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.dataformat.xml.annotation.*
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import de.bringmeister.domain.entity.Price
 import de.bringmeister.domain.entity.ProductDetail
+import de.bringmeister.usecase.prices.ParsePrices
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter
 import org.springframework.stereotype.Service
 
-internal data class ProductsXml(@JacksonXmlElementWrapper(useWrapping = false)
+/**
+ * This class acts as a mapper for the JSON representation.
+ * It should never be used outside of this class, therefore its private
+ */
+private data class ProductsXml(@JacksonXmlElementWrapper(useWrapping = false)
                                @JacksonXmlProperty(localName = "Product") val products: List<ProductXml>)
 
 @JacksonXmlRootElement(localName = "Product")
@@ -22,6 +25,9 @@ internal data class ProductXml(@JacksonXmlProperty(isAttribute = true) val id: S
             name = name.trim(), prices = prices)
 }
 
+/**
+ * Is responsible for parsing the prices json file and convert it to our domain object price
+ */
 @Service
 class ParseProductsImpl @Autowired constructor(private val parsePrices: ParsePrices,
                                                private val converter: MappingJackson2XmlHttpMessageConverter) : ParseProducts {

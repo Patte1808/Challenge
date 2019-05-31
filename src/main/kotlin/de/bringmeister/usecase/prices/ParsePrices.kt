@@ -1,4 +1,4 @@
-package de.bringmeister.usecase
+package de.bringmeister.usecase.prices
 
 import de.bringmeister.domain.entity.Price
 

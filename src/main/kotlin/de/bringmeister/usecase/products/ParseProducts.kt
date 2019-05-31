@@ -1,4 +1,4 @@
-package de.bringmeister.usecase
+package de.bringmeister.usecase.products
 
 import de.bringmeister.domain.entity.ProductDetail
 
