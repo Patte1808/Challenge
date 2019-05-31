@@ -14,3 +14,10 @@ You can use external libraries.
 Out of scope:
 - Persistence of data
 - Authentication/Authorization
+
+# Endpoints:
+`/products/` - List all products
+
+`/products/{id}` - List all products by id (Note: Its not the SKU)
+
+`/products/{id}?unit={unit}` - List all products by id with unit (Note: if unit is not present in product it will display the product without any price)
