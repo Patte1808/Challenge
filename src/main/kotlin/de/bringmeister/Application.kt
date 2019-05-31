@@ -13,9 +13,6 @@ class Application {
 
     @Bean
     fun getKlaxon(): Klaxon = Klaxon()
-
-    @Bean
-    fun getObjectMapper(): ObjectMapper = XmlMapper().registerModule(KotlinModule())
 }
 
 fun main(args: Array<String>) {
