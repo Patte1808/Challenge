@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
-class ProductRepositoryImpl @Autowired constructor(val productDao: ProductDao) : ProductRepository {
+class ProductRepositoryImpl @Autowired constructor(private val productDao: ProductDao) : ProductRepository {
 
     override fun getAllProducts() = productDao.findAllProducts()
 

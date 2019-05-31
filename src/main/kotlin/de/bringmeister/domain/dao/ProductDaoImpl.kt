@@ -8,16 +8,16 @@ import org.springframework.stereotype.Component
 import javax.annotation.PostConstruct
 
 @Component
-class ProductDaoImpl @Autowired constructor(val parseProducts: ParseProducts) : ProductDao {
+class ProductDaoImpl @Autowired constructor(private val parseProducts: ParseProducts) : ProductDao {
 
     private lateinit var productDetails: List<ProductDetail>
 
     @PostConstruct
-    fun init() {
+    fun fetchProducts() {
         productDetails = parseProducts.execute()
     }
 
-    override fun findProductById(id: String): ProductDetail? = productDetails.firstOrNull { product -> product.sku == id }
+    override fun findProductById(id: String): ProductDetail? = productDetails.firstOrNull { product -> product.id == id }
 
     override fun findProductByIdWithUnit(id: String, unit: String): ProductDetail? {
         val product = findProductById(id)

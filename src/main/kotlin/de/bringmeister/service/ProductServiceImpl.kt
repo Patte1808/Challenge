@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class ProductServiceImpl @Autowired constructor(val productRepository: ProductRepository) : ProductService {
+class ProductServiceImpl @Autowired constructor(private val productRepository: ProductRepository) : ProductService {
     
     override fun findAll() = productRepository.getAllProducts()
 
